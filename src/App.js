@@ -5,7 +5,6 @@ import DarkTheme from './UI/MaterialTheme/dark.json'
 import LightTheme from './UI/MaterialTheme/light.json'
 import Appbar from "./Components/Appbar/Appbar";
 import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
 import MainComponent from "./Components/MainComponent/MainComponent";
 
 
@@ -18,7 +17,9 @@ function App() {
 
     useEffect(()=>{
         const dark = localStorage.getItem("dark")
+        const stateCode = localStorage.getItem("stateCode")
         dark === "Y" ? setDarkMode(true) : setDarkMode(false)
+        setDropDownValue(stateCode?stateCode:"TT")
     },[])
 
     const handleDarkMode = () =>{
@@ -28,6 +29,7 @@ function App() {
 
     const onDropDownChangeHandler = (event) => {
         setDropDownValue(event.target.value)
+        localStorage.setItem("stateCode",event.target.value)
     }
     return (
         <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>

@@ -1,11 +1,12 @@
 .StateSection{
     padding: 4px;
+
 }
 .StateStats{
-    flex-basis: 50%;
 }
 .StateStats > h5{
     letter-spacing: 1px;
+    word-spacing: 1px;
 }
 .StateStats > h6{
     letter-spacing: 1px;
@@ -17,7 +18,7 @@
     margin-top: 32px;
     display: flex;
     align-items: center;
-
+    overflow-x: scroll;
 }
 .StateZones{
     margin-top: 26px;
@@ -26,6 +27,7 @@
 .StateZones > h6{
     letter-spacing: 1px;
 }
+
 @media (max-width: 350px) {
 
     .StateStats > h5{

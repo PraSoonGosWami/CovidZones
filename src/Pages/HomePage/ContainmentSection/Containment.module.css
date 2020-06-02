@@ -1,0 +1,16 @@
+.Containment{
+    padding: 4px;
+    text-align: left;
+}
+
+.Containment > h5{
+    letter-spacing: 1px;
+    word-spacing: 1px;
+}
+@media (max-width: 900px) {
+    .Containment{
+        margin-top: 8px;
+        order: -1;
+        margin-bottom: 36px;
+    }
+}

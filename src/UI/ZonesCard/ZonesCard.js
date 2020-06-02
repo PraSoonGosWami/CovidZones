@@ -13,7 +13,7 @@ const ZonesCard = (props) => {
         Green : "#1b7105"
     }
     return(
-        <div style={{backgroundColor:colors[props.bgColor],padding:"8px",margin:"10px 6px", borderRadius:"4px"}}>
+        <div style={{backgroundColor:colors[props.bgColor],padding:"8px",margin:"10px 0", borderRadius:"4px"}}>
             <Typography variant={"h6"} style={{color:textColor[props.bgColor], fontWeight:"light", fontSize:"0.95em"}} >{props.district}</Typography>
         </div>
     )

@@ -1,8 +1,16 @@
 .HomePage{
     display: flex;
     align-items: flex-start;
-    justify-content: space-around;
+    justify-content: space-evenly;
     padding: 8px 0;
     overflow-x: hidden;
 }
 
+
+@media (max-width: 900px) {
+    .HomePage{
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
