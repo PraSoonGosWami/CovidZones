@@ -1,0 +1,40 @@
+.StateSection{
+    padding: 4px;
+}
+.StateStats{
+    flex-basis: 50%;
+}
+.StateStats > h5{
+    letter-spacing: 1px;
+}
+.StateStats > h6{
+    letter-spacing: 1px;
+    font-size: 0.8em;
+    margin-top: 4px;
+}
+
+.StateStats > header{
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+
+}
+.StateZones{
+    margin-top: 26px;
+}
+
+.StateZones > h6{
+    letter-spacing: 1px;
+}
+@media (max-width: 350px) {
+
+    .StateStats > h5{
+        font-size: 1.4em;
+        margin-left: 8px;
+    }
+    .StateStats > h6{
+        font-size: 0.75em;
+        margin-top: 4px;
+        margin-left: 8px;
+    }
+}

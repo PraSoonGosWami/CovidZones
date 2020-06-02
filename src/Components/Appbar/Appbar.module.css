@@ -1,0 +1,41 @@
+.Appbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.Appbar > header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Appbar > header > img{
+    width: 36px;
+    margin-right: 8px;
+}
+.Appbar > header:last-of-type > button{
+    padding: 8px;
+}
+.Appbar > header:last-of-type > div:first-of-type{
+    margin-right: 6px;
+}
+@media (max-width: 600px) {
+
+    .Appbar > header:first-of-type > h6{
+        display: none;
+    }
+
+}
+
+@media (max-width: 390px) {
+    .Appbar > header:last-of-type{
+        width: 85%;
+        justify-content: flex-end;
+    }
+
+    .Appbar > header:last-of-type > button{
+        padding: 4px;
+        margin-left: 4px;
+    }
+}

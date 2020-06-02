@@ -1,0 +1,8 @@
+.HomePage{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    padding: 8px 0;
+    overflow-x: hidden;
+}
+
