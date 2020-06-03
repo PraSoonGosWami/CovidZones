@@ -11,17 +11,23 @@ const StateSection = (props) => {
     const stateCode = props.stateCode
     const [stats, setStats] = useState(null)
     const [zones, setZones] = useState(null)
-
+    const [deltaActive, setDeltaActive] = useState("")
     useEffect(()=>{
         props.setLoading(true)
         AxiosInstance.get(`/stats/${stateCode}`)
             .then(res=>{
                 setStats(res.data)
+                const dc = +res.data[0].deltaconfirmed
+                const dr = +res.data[0].deltarecovered
+                const dd = +res.data[0].deltadeaths
+
+                const da = dc - dr - dd
+                da>=0 ? setDeltaActive("+"+da):setDeltaActive(da.toString())
             })
             .catch(err => {
             })
 
-        AxiosInstance.get(`/zones/${stateCode}`)
+        stateCode!=="TT" && AxiosInstance.get(`/zones/${stateCode}`)
             .then(res=>{
                 setZones(res.data)
             })
@@ -31,10 +37,12 @@ const StateSection = (props) => {
             .finally(()=>{
                 props.setLoading(false)
             })
+        stateCode === 'TT' && props.setLoading(false)
+
     },[stateCode])
 
     return(
-        <div className={Style.StateSection}>
+        <div className={Style.StateSection} style={{animationDelay:"2s"}}>
             {
                 stats &&
                 <div className={Style.StateStats}>
@@ -42,10 +50,10 @@ const StateSection = (props) => {
                     <Typography variant={"h6"} color={"textSecondary"}>Last update {getDateAndTime(stats["0"].lastupdatedtime)} IST</Typography>
 
                     <header>
-                        <StatsCards bgColor={"#F9C9C9"} color={"#EF2525"} title={"Confirmed"} number={stats["0"].confirmed}/>
-                        <StatsCards bgColor={"#9EC2F8"} color={"#1558F3"} title={"Active"} number={stats["0"].active}/>
-                        <StatsCards bgColor={"#A9D5A5"} color={"#0C4B05"} title={"Recovered"} number={stats["0"].recovered}/>
-                        <StatsCards bgColor={"#A4A2A2"} color={"#090909"} title={"Death"} number={stats["0"].deaths}/>
+                        <StatsCards bgColor={"#F9C9C9"} color={"#EF2525"} title={"Confirmed"} number={stats["0"].confirmed} delta={"+"+stats["0"].deltaconfirmed}/>
+                        <StatsCards bgColor={"#9EC2F8"} color={"#1558F3"} title={"Active"} number={stats["0"].active} delta={deltaActive} />
+                        <StatsCards bgColor={"#A9D5A5"} color={"#0C4B05"} title={"Recovered"} number={stats["0"].recovered} delta={"+"+stats["0"].deltarecovered}/>
+                        <StatsCards bgColor={"#A4A2A2"} color={"#090909"} title={"Death"} number={stats["0"].deaths} delta={"+"+stats["0"].deltadeaths} />
                     </header>
                 </div>
             }

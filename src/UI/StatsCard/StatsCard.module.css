@@ -16,9 +16,12 @@
     margin-right: 0;
 }
 
-.StatsCard > p:last-of-type{
+.StatsCard > p:nth-child(2){
     margin: 4px;
     font-weight: bold;
+}
+.StatsCard > p:last-of-type{
+    margin: 2px 4px 4px 0;
 }
 @media (max-width: 480px) {
     .StatsCard{

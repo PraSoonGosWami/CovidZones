@@ -3,6 +3,9 @@
     margin-left: 40px;
     box-sizing: border-box;
     width: 500px;
+    animation: fade 0.8s ease-in-out;
+    animation-delay: 1s;
+    animation-fill-mode: backwards;
 }
 
 .Containment > h5{
@@ -11,6 +14,16 @@
     display: block;
 }
 
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translateY(50px)
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
 
 @media (max-width: 900px) {
     .Containment{

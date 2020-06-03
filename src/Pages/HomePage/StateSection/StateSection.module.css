@@ -1,7 +1,23 @@
 .StateSection{
     padding: 4px;
+    animation: fade 0.8s ease-in-out;
+    animation-delay: 2s;
+    animation-fill-mode: backwards;
+}
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translateY(50px)
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
 }
 .StateStats{
+    animation: fade 0.8s ease-in-out;
+    animation-delay: 0.7s;
+    animation-fill-mode: backwards;
 }
 .StateStats > h5{
     letter-spacing: 1px;
@@ -20,6 +36,9 @@
 }
 .StateZones{
     margin-top: 26px;
+    animation: fade 0.8s ease-in-out;
+    animation-delay: 1s;
+    animation-fill-mode: backwards;
 }
 
 .StateZones > h6{

@@ -10,6 +10,8 @@ import Divider from "@material-ui/core/Divider";
 import { makeStyles } from '@material-ui/core/styles';
 import AxiosInstance from '../../../Services/AxiosInstance'
 import SearchResCard from "../../../UI/SearchResCard/SearchResCard";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import ContainmnetList from "./ContainmentList/ContainmnetList";
 
 const Containment = (props) => {
     const [darkMode, setDarkMode] = useState(false)
@@ -42,16 +44,19 @@ const Containment = (props) => {
 
     const [query, setQuery] = useState("")
     const [queryRes, setQueryRes] = useState(null)
+    const [containmentRes, setContainmentRes] = useState(null)
+    const [loading, setLoading] = useState(false)
 
     const onTextChanged = (event) => {
         setQuery(event.target.value)
         if(query.length===0){
             setQueryRes(null)
         }
-       // getQueryRes()
     }
 
     const getQueryRes =() =>{
+        if(query.length === 0)
+            return
         const data = {query}
         setQueryRes([{address:"Searching...",geo:{lat:201}}])
         AxiosInstance.post('/search/location', data)
@@ -66,23 +71,41 @@ const Containment = (props) => {
             })
     }
 
-    const onAddressSelectedListener = (geocode,address) => {
-        getContainmentInfo(geocode)
-        setQueryRes(null)
-        setQuery(address)
+    const getCurrentLocation = () => {
+        let geocode = []
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                if(position.coords){
+                    geocode.push(position.coords.latitude)
+                    geocode.push(position.coords.longitude)
+                    console.log(geocode)
+                    getContainmentInfo(geocode)
+
+                }
+            },(err)=>alert(err.message))
+        } else {
+            alert("Not Available");
+        }
 
     }
 
-    const getContainmentInfo = (geoCode) => {
+    const onAddressSelectedListener = (geocode,address) => {
+        getContainmentInfo([geocode.lat,geocode.lng])
+        setQueryRes(null)
+        setQuery(address)
+    }
 
-        const data = {location : [geoCode.lat,geoCode.lng]}
+    const getContainmentInfo = (geoCode) => {
+        setLoading(true)
+        const data = {location : geoCode}
         AxiosInstance.post('/check/containment/',data)
             .then(res => {
-                console.log(res)
+                setContainmentRes(res.data)
             })
             .catch(err => {
                 console.log(err)
             })
+            .finally(()=>setLoading(false))
     }
 
     return(
@@ -92,17 +115,17 @@ const Containment = (props) => {
                 <InputBase
                     value={query}
                     fullWidth
-                    type={"text"}
+                    type={"search"}
                     onChange={(event => onTextChanged(event))}
                     className={classes.input}
-                    placeholder="Search Area, Locality, Cites, States..."
-                    inputProps={{ 'aria-label': 'Search Area, Locality, Cites, States...' }}
+                    placeholder="Search Area, Locality, Cites..."
+                    inputProps={{ 'aria-label': 'Search Area, Locality, Cites...' }}
                 />
                 <IconButton type="submit" className={classes.iconButton} aria-label="search">
                     <SearchIcon />
                 </IconButton>
                 <Divider className={classes.divider}  orientation="vertical" />
-                <IconButton color="secondary" className={classes.iconButton} aria-label="directions">
+                <IconButton onClick={()=>getCurrentLocation()} color="secondary" className={classes.iconButton} aria-label="directions">
                     <LoacationIcon />
                 </IconButton>
             </Paper>
@@ -113,6 +136,10 @@ const Containment = (props) => {
                     })}
                 </SearchResCard>
             }
+
+            {loading && <LinearProgress  color={"secondary"}/>}
+            {!loading && containmentRes && <ContainmnetList data={containmentRes}/>}
+
         </div>
     )
 }

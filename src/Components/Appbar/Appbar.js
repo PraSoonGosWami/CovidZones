@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -18,7 +18,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 const Appbar = (props) => {
     const history = useHistory()
 
-    const [stateCodes, setStateCodes] = useState(StateCodesJSON)
+    const [stateCodes] = useState(StateCodesJSON)
 
     const infoHandler = () => {
         history.push('/about')
@@ -32,7 +32,6 @@ const Appbar = (props) => {
                     <img src={AppLogo} alt={"App logo"}/>
                     <Typography variant="h6">CovidZones</Typography>
                 </header>
-
                 <header>
                     <TextField
 
