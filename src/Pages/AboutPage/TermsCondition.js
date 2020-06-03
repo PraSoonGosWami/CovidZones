@@ -6,7 +6,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const TermsCondition = (props) => {
     return (
-        <ExpansionPanel>
+        <ExpansionPanel elevation={0} style={{marginTop:"12px"}}>
             <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon/>}
                 aria-controls="panel1a-content"
@@ -15,15 +15,8 @@ const TermsCondition = (props) => {
 
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-                <div style={{padding: "8px 12px"}}>
-                    <p>These terms and conditions (&quot;Terms&quot;, &quot;Agreement&quot;) are an agreement between
-                        Website Operator (&quot;Website
-                        Operator&quot;, &quot;us&quot;, &quot;we&quot; or &quot;our&quot;) and you
-                        (&quot;User&quot;, &quot;you&quot; or &quot;your&quot;). This Agreement sets forth the general
-                        terms and conditions of your use of the <a style={{color: "rgba(56, 142, 60, 1)"}}
-                                                                   target="_blank" rel="nofollow"
-                                                                   href="https://covidzones.prasoon.me">covidzones.prasoon.me</a> website
-                        and any of its products or services (collectively, &quot;Website&quot; or &quot;Services&quot;).
+                <div style={{padding: "8px 0"}}>
+                    <p>These terms and conditions (&quot;Terms&quot;, &quot;Agreement&quot;) are an agreement between Website Operator (&quot;Website Operator&quot;, &quot;us&quot;, &quot;we&quot; or &quot;our&quot;) and you (&quot;User&quot;, &quot;you&quot; or &quot;your&quot;). This Agreement sets forth the general terms and conditions of your use of the <a style={{color: "rgba(56, 142, 60, 1)",fontWeight:"bold"}} target="_blank" rel="nofollow" href="https://covidzones.prasoon.me">covidzones.prasoon.me</a> website and any of its products or services (collectively, &quot;Website&quot; or &quot;Services&quot;).
                     </p>
                     <h3>Links to other websites</h3>
                     <p>Although this Website may link to other websites, we are not, directly or indirectly, implying
