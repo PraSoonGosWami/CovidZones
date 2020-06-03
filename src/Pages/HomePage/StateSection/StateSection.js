@@ -13,6 +13,7 @@ const StateSection = (props) => {
     const [zones, setZones] = useState(null)
 
     useEffect(()=>{
+        props.setLoading(true)
         AxiosInstance.get(`/stats/${stateCode}`)
             .then(res=>{
                 setStats(res.data)
@@ -26,6 +27,9 @@ const StateSection = (props) => {
             })
             .catch(err => {
 
+            })
+            .finally(()=>{
+                props.setLoading(false)
             })
     },[stateCode])
 

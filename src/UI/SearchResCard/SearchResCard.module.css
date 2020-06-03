@@ -1,0 +1,28 @@
+.SearchResCard{
+    display: block;
+    box-sizing: border-box;
+    padding: 12px;
+    margin-top: 1px;
+    max-height: 500px;
+    width: 100%;
+    overflow-y: scroll !important;
+}
+
+.CloseButton{
+    position: fixed;
+    top: 0px;
+    left: 90%;
+}
+
+.SearchResCard > h5{
+    margin: 0;
+    word-spacing: 1px;
+    letter-spacing: 1px;
+    padding: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.SearchResCard > h5:hover{
+    background-color: rgba(67, 160, 71, 1);
+}

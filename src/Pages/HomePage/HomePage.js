@@ -1,12 +1,15 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Style from './HomePage.module.css'
 import StateSection from "./StateSection/StateSection";
 import Containment from "./ContainmentSection/Containment";
+import ProgressBar from "../../UI/ProgressBar/ProgressBar";
 const HomePage = (props) => {
+    const [loading , setLoading] = useState(true)
     return(
         <div className={Style.HomePage}>
-            <StateSection stateCode={props.stateCode}/>
-            <Containment/>
+            {loading && <ProgressBar/>}
+            <StateSection setLoading={setLoading} stateCode={props.stateCode}/>
+            {!loading && <Containment/>}
         </div>
     )
 }

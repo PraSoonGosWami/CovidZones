@@ -13,6 +13,7 @@ import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 
 import StateCodesJSON from '../../Utils/StateCodes.json'
+import Tooltip from "@material-ui/core/Tooltip";
 
 const Appbar = (props) => {
     const history = useHistory()
@@ -34,23 +35,28 @@ const Appbar = (props) => {
 
                 <header>
                     <TextField
-                        style={{fontSize:"10px"}}
+
                         value={props.dropDownValue}
                         onChange={(event => props.onDropDownChangeHandler(event))}
                         select
                         variant={"outlined"}
                         size={"small"} color={"secondary"}>
                         {Object.keys(stateCodes).map(code => {
-                            return <MenuItem  key={code} value={code}>{stateCodes[code]}</MenuItem>
+                            return <MenuItem key={code} value={code}>{stateCodes[code]}</MenuItem>
                         })}
                     </TextField>
 
-                    <IconButton color="secondary" onClick={() => infoHandler()}>
-                        <InfoIcon/>
-                    </IconButton>
+                    <Tooltip title={"Info"}>
+                        <IconButton color="secondary" onClick={() => infoHandler()}>
+                            <InfoIcon/>
+                        </IconButton>
+                    </Tooltip>
+
+                    <Tooltip title={"Theme mode"}>
                     <IconButton color="secondary" onClick={props.handleChange}>
                         {props.checked ? <ToLightModeIcon/> : <ToDarkModeIcon/>}
                     </IconButton>
+                    </Tooltip>
                 </header>
             </Toolbar>
         </AppBar>

@@ -7,7 +7,7 @@
     },
     "background": {
       "paper": "rgba(44, 44, 44, 1)",
-      "default": "rgba(255, 255, 255, 1)"
+      "default": "rgba(33, 33, 33, 1)"
     },
     "primary": {
       "light": "rgba(33, 33, 33, 0.6)",

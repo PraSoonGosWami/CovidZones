@@ -1,7 +1,7 @@
 .HomePage{
     display: flex;
     align-items: flex-start;
-    justify-content: space-evenly;
+    justify-content: center;
     padding: 8px 0;
     overflow-x: hidden;
 }
@@ -10,7 +10,8 @@
 @media (max-width: 900px) {
     .HomePage{
         flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
+        justify-content: flex-start;
+        align-items: normal;
     }
 }
+
