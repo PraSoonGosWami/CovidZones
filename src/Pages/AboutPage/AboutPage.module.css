@@ -1,3 +1,19 @@
 .AboutPage{
+    padding: 4px;
+}
+.AboutPage > header{
+    padding: 4px;
+    margin: 0 16px;
+}
+.AboutPage > header > h3{
+    margin-bottom: 0;
+}
 
+.AboutPage > header > p{
+    margin-top: 2px;
+}
+.AboutPage > header > p > a{
+    text-decoration: none;
+    font-weight: bold;
+    color: rgba(67, 160, 71, 1);
 }
