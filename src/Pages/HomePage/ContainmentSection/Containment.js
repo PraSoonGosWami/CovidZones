@@ -87,7 +87,6 @@ const Containment = (props) => {
                 if(position.coords){
                     geocode.push(position.coords.latitude)
                     geocode.push(position.coords.longitude)
-                    console.log(geocode)
                     getContainmentInfo(geocode)
 
                 }

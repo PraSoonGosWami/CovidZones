@@ -6,10 +6,23 @@ import LightTheme from './UI/MaterialTheme/light.json'
 import Appbar from "./Components/Appbar/Appbar";
 import Paper from "@material-ui/core/Paper";
 import MainComponent from "./Components/MainComponent/MainComponent";
+import ReactGA from 'react-ga';
 
 
 
 function App() {
+
+    //google analytics
+    function initializeReactGA() {
+        ReactGA.initialize('UA-168580398-1');
+        ReactGA.pageview('/');
+        ReactGA.pageview('/about');
+    }
+
+    useEffect(()=>{
+        initializeReactGA()
+    },[])
+
     const [darkMode, setDarkMode] = useState(true)
     const [dropDownValue, setDropDownValue] = useState("TT")
     const darkTheme = createMuiTheme(DarkTheme)

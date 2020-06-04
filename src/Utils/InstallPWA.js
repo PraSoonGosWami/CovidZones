@@ -9,7 +9,6 @@ const InstallPWA = () => {
     useEffect(() => {
         const handler = e => {
             e.preventDefault();
-            console.log("we are being triggered :D");
             setSupportsPWA(true);
             setPromptInstall(e);
         };
@@ -26,9 +25,6 @@ const InstallPWA = () => {
         promptInstall.prompt();
     };
 
-    if(!supportsPWA){
-        return null
-    }
 
     return (
         <React.Fragment>
