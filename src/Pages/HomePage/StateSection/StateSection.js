@@ -61,6 +61,11 @@ const StateSection = (props) => {
                zones &&
                <div className={Style.StateZones}>
                    <Typography variant={"h6"} >District wise zones</Typography>
+                   <Typography color={"textSecondary"}>(For district wise cases visit <a
+                           style={{textDecoration:"none",fontWeight:"bold",color:"rgba(56, 142, 60, 1)"}}
+                           rel={"noopener noreferrer"}
+                           href={"https://www.covid19india.org/"} target={"_blank"}>here</a>)
+                   </Typography>
                    {zones.map(item => {
                        return <ZonesCard key={item.districtcode} district={item.district} bgColor={item.zone}/>
                    })}

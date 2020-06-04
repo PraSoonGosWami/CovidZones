@@ -18,6 +18,9 @@
     text-wrap: normal;
     word-break: break-all;
 }
+.AboutPage > header > p:last-of-type{
+    margin-top: -12px;
+}
 .AboutPage > header > p > a{
     text-decoration: none;
     font-weight: bold;

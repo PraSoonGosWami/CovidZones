@@ -28,7 +28,7 @@ const Appbar = (props) => {
     return (
         <AppBar position={"sticky"}>
             <Toolbar className={Style.Appbar}>
-                <header>
+                <header onClick={()=>history.replace('/')}>
                     <img src={AppLogo} alt={"App logo"}/>
                     <Typography variant="h6">CovidZones</Typography>
                 </header>

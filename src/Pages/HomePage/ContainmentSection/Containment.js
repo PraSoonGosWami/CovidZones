@@ -15,10 +15,6 @@ import ContainmnetList from "./ContainmentList/ContainmnetList";
 
 const Containment = (props) => {
     const [darkMode, setDarkMode] = useState(false)
-    useEffect(()=>{
-        const dark = localStorage.getItem("dark")
-        dark === "Y" ? setDarkMode(true) : setDarkMode(false)
-    },[])
     const useStyles = makeStyles((theme) => ({
         root: {
             padding: '2px 4px',
@@ -47,6 +43,19 @@ const Containment = (props) => {
     const [containmentRes, setContainmentRes] = useState(null)
     const [loading, setLoading] = useState(false)
 
+    useEffect(()=>{
+        const dark = localStorage.getItem("dark")
+        dark === "Y" ? setDarkMode(true) : setDarkMode(false)
+    },[])
+
+    //loads last detected containment zone data
+    useEffect(()=>{
+        const geocode = localStorage.getItem("geocode")
+        if(geocode){
+            getContainmentInfo(JSON.parse(geocode))
+            window.scrollTo(0,0)
+        }
+    },[])
     const onTextChanged = (event) => {
         setQuery(event.target.value)
         if(query.length===0){
@@ -100,6 +109,7 @@ const Containment = (props) => {
         const data = {location : geoCode}
         AxiosInstance.post('/check/containment/',data)
             .then(res => {
+                localStorage.setItem("geocode",JSON.stringify(geoCode))
                 setContainmentRes(res.data)
             })
             .catch(err => {
@@ -118,8 +128,8 @@ const Containment = (props) => {
                     type={"search"}
                     onChange={(event => onTextChanged(event))}
                     className={classes.input}
-                    placeholder="Search Area, Locality, Cites..."
-                    inputProps={{ 'aria-label': 'Search Area, Locality, Cites...' }}
+                    placeholder="Search Area, Street, Locality"
+                    inputProps={{ 'aria-label': 'Search Area, Street, Locality' }}
                 />
                 <IconButton type="submit" className={classes.iconButton} aria-label="search">
                     <SearchIcon />

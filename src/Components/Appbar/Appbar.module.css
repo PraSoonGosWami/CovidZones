@@ -20,6 +20,10 @@
 .Appbar > header:last-of-type > div:first-of-type{
     margin-right: 6px;
 }
+
+.Appbar > header:first-of-type{
+    cursor: pointer;
+}
 @media (max-width: 600px) {
 
     .Appbar > header:first-of-type > h6{
