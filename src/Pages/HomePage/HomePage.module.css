@@ -1,7 +1,7 @@
 .HomePage{
     display: flex;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: space-evenly;
     padding: 8px 0;
     overflow-x: hidden;
 }

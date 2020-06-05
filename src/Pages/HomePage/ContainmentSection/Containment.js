@@ -13,7 +13,7 @@ import SearchResCard from "../../../UI/SearchResCard/SearchResCard";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import ContainmnetList from "./ContainmentList/ContainmnetList";
 
-const Containment = (props) => {
+const Containment = () => {
     const [darkMode, setDarkMode] = useState(false)
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -42,20 +42,22 @@ const Containment = (props) => {
     const [queryRes, setQueryRes] = useState(null)
     const [containmentRes, setContainmentRes] = useState(null)
     const [loading, setLoading] = useState(false)
+    const dark = localStorage.getItem("dark")
 
     useEffect(()=>{
-        const dark = localStorage.getItem("dark")
         dark === "Y" ? setDarkMode(true) : setDarkMode(false)
-    },[])
+    },[dark])
 
     //loads last detected containment zone data
     useEffect(()=>{
-        const geocode = localStorage.getItem("geocode")
-        if(geocode){
-            getContainmentInfo(JSON.parse(geocode))
+        const containmentData = localStorage.getItem("containmentData")
+        if(containmentData){
+            setContainmentRes(JSON.parse(containmentData))
             window.scrollTo(0,0)
         }
     },[])
+
+    //on search bar text change handler
     const onTextChanged = (event) => {
         setQuery(event.target.value)
         if(query.length===0){
@@ -63,6 +65,7 @@ const Containment = (props) => {
         }
     }
 
+    //get search result from backend
     const getQueryRes =() =>{
         if(query.length === 0)
             return
@@ -73,13 +76,14 @@ const Containment = (props) => {
                 setQueryRes(res.data)
             })
             .catch(error => {
-                console.log(error.response)
-                if(error.response.data){
+                if(error.response){
+                    alert(error.response.data.message)
                     setQueryRes([{address:error.response.data.message,geo:{lat:404}}])
                 }
             })
     }
 
+    //get current user location from navigator
     const getCurrentLocation = () => {
         let geocode = []
         if ("geolocation" in navigator) {
@@ -97,24 +101,35 @@ const Containment = (props) => {
 
     }
 
+    //gets geocode for selected address returned from search and call getContainmentInfo()
     const onAddressSelectedListener = (geocode,address) => {
         getContainmentInfo([geocode.lat,geocode.lng])
         setQueryRes(null)
         setQuery(address)
     }
 
+    //gets containment zone info from backend
     const getContainmentInfo = (geoCode) => {
         setLoading(true)
         const data = {location : geoCode}
         AxiosInstance.post('/check/containment/',data)
             .then(res => {
-                localStorage.setItem("geocode",JSON.stringify(geoCode))
+                //storing data to local storage
+                localStorage.setItem("containmentData",JSON.stringify(res.data))
                 setContainmentRes(res.data)
             })
-            .catch(err => {
-                console.log(err)
+            .catch(error => {
+                if(error.response.data){
+                    alert(error.response.data.message)
+                }
             })
             .finally(()=>setLoading(false))
+    }
+
+    //clears the containment data stored in local storage and re render component
+    const onClearButtonClickHandler = () =>{
+        localStorage.removeItem("containmentData")
+        setContainmentRes(null)
     }
 
     return(
@@ -147,10 +162,10 @@ const Containment = (props) => {
             }
 
             {loading && <LinearProgress  color={"secondary"}/>}
-            {!loading && containmentRes && <ContainmnetList data={containmentRes}/>}
+            {!loading && containmentRes && <ContainmnetList data={containmentRes} onClearButtonClickHandler={onClearButtonClickHandler}/>}
 
         </div>
     )
 }
 
-export default Containment
+export default React.memo(Containment)

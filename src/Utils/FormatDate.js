@@ -8,6 +8,12 @@ const timeFormat = {
     hour : "numeric",
     minute : "2-digit"
 }
+export const formatDateAndTime = (milliseconds) => {
+    const d = new Date(milliseconds)
+    const date = d.toLocaleDateString("en",dateFormat) + " " + d.toLocaleTimeString("en",timeFormat)
+    return date
+}
+
 export const getDateAndTime = (dt) => {
     const date = dt.split(' ')
     const reFormatedDate = date[0].split('/')

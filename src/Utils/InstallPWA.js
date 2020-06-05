@@ -25,6 +25,9 @@ const InstallPWA = () => {
         promptInstall.prompt();
     };
 
+    if(!supportsPWA){
+        return null
+    }
 
     return (
         <React.Fragment>

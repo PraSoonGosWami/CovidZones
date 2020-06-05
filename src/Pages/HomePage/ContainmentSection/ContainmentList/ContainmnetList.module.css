@@ -1,7 +1,17 @@
 .Clist {
-    margin-top: 32px;
+    margin-top: 18px;
 }
 
+.Clist > header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+}
+.Clist > header > p{
+    font-size: 0.82em;
+    word-spacing: 1px;
+}
 .Clist > p {
     word-spacing: 1px;
     letter-spacing: 1px;

@@ -17,4 +17,4 @@ const MainComponent = (props) => {
     )
 }
 
-export default MainComponent
+export default React.memo(MainComponent)

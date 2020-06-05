@@ -1,11 +1,20 @@
 import React from 'react'
 import Style from './ContainmnetList.module.css'
 import Nearbyzones from "../NearbyZones/Nearbyzones";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import {formatDateAndTime} from "../../../../Utils/FormatDate";
 
 const ContainmnetList = (props) => {
     const data = props.data
+
+
     return (
         <div className={Style.Clist}>
+            <header>
+                    {data.lastUpdated && <Typography color={"textSecondary"}>Last update {formatDateAndTime(data.lastUpdated)}</Typography>}
+                <Button onClick={()=>props.onClearButtonClickHandler()} color={"secondary"} variant={"text"} size={"small"}>Clear</Button>
+            </header>
             <p>Address: <strong>{data.address}</strong></p>
             <p>District: <strong>{data.containment[0].district}</strong></p>
             <p>District zone type: <strong>{data.containment[0].districtZoneType}</strong></p>

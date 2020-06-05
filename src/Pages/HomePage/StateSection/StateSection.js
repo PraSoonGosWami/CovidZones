@@ -12,6 +12,7 @@ const StateSection = (props) => {
     const [stats, setStats] = useState(null)
     const [zones, setZones] = useState(null)
     const [deltaActive, setDeltaActive] = useState("")
+
     useEffect(()=>{
         props.setLoading(true)
         AxiosInstance.get(`/stats/${stateCode}`)
@@ -24,20 +25,29 @@ const StateSection = (props) => {
                 const da = dc - dr - dd
                 da>=0 ? setDeltaActive("+"+da):setDeltaActive(da.toString())
             })
-            .catch(err => {
+            .catch(error => {
+                if(error.response){
+                    alert(error.response.data.message)
+                }
+            })
+            .finally(()=>{
+                stateCode === 'TT' && props.setLoading(false)
             })
 
+        //gets district wise zone data
         stateCode!=="TT" && AxiosInstance.get(`/zones/${stateCode}`)
             .then(res=>{
                 setZones(res.data)
             })
-            .catch(err => {
-
+            .catch(error => {
+                if(error.response){
+                    alert(error.response.data.message)
+                }
             })
             .finally(()=>{
                 props.setLoading(false)
             })
-        stateCode === 'TT' && props.setLoading(false)
+
 
     },[stateCode])
 
@@ -58,7 +68,7 @@ const StateSection = (props) => {
                 </div>
             }
             {
-               zones &&
+               stats && zones &&
                <div className={Style.StateZones}>
                    <Typography variant={"h6"} >District wise zones</Typography>
                    <Typography color={"textSecondary"}>(For district wise cases visit <a

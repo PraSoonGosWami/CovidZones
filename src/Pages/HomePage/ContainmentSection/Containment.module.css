@@ -1,11 +1,12 @@
 .Containment{
     padding: 4px;
-    margin-left: 40px;
+    margin-right: 10px;
     box-sizing: border-box;
     width: 500px;
     animation: fade 0.8s ease-in-out;
     animation-delay: 1s;
     animation-fill-mode: backwards;
+    order: -1;
 }
 
 .Containment > h5{
