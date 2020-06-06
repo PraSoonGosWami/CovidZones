@@ -1,6 +1,6 @@
 {
   "name": "CovidZones",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.10.1",
@@ -16,7 +16,8 @@
     "react-ga": "^2.7.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "shortid": "^2.2.15"
   },
   "scripts": {
     "start": "react-scripts start",

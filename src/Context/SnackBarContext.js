@@ -1,6 +1,6 @@
 import React, {createContext, useCallback, useState} from 'react'
 import AlertNotification from "../UI/Alert/AlertNotification";
-
+import shortId from 'shortid'
 export const SnackBarContext = createContext([])
 
 
@@ -10,7 +10,7 @@ export function SnackBarProvider({ children }) {
 
     const addAlert = useCallback((message,type) => {
         setShowAlert(true)
-        setAlert([{message,type}])
+        setAlert(prevState => prevState.concat({message,type}))
     },[])
 
     const value = {addAlert}
@@ -20,7 +20,7 @@ export function SnackBarProvider({ children }) {
             {children}
             {alert.map(el =>
                 <AlertNotification
-                    key={el.message}
+                    key={shortId.generate()}
                     open={showAlert}
                     onClose={() => setShowAlert(false)}
                     type={el.type}>{el.message}

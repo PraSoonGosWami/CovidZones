@@ -24,14 +24,16 @@ const StateSection = (props) => {
                 const dc = +res.data[0].deltaconfirmed
                 const dr = +res.data[0].deltarecovered
                 const dd = +res.data[0].deltadeaths
-
                 const da = dc - dr - dd
                 da>=0 ? setDeltaActive("+"+da):setDeltaActive(da.toString())
             })
             .catch(error => {
                 if(error.response){
                     addAlert(error.response.data.message,'error')
+                    return
                 }
+                addAlert(error.toString(),'error')
+
             })
             .finally(()=>{
                 stateCode === 'TT' && props.setLoading(false)
@@ -46,6 +48,8 @@ const StateSection = (props) => {
                 if(error.response){
                     addAlert(error.response.data.message,'error')
                 }
+                addAlert(error.toString(),'error')
+
             })
             .finally(()=>{
                 props.setLoading(false)
