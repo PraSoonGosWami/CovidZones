@@ -4,6 +4,8 @@ CovidZones is a web app made with React which shows state and district wise COVI
 
 I have used open-source APIs from **covid19India** and **GeoIq** to collect data. This web app is meant to be used for personal use to get a quick overview of the district-wise zone and containment zones
 
+The backend is made with Node.js and Express.js
+
 Visit the website - https://covidzones.prasoon.me/
 
 ##### Latest version - 0.2.0
