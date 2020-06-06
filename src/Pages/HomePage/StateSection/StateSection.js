@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import StatsCards from "../../../UI/StatsCard/StatsCards";
 import {getDateAndTime} from "../../../Utils/FormatDate";
 import ZonesCard from "../../../UI/ZonesCard/ZonesCard";
+import useAlert from "../../../Hooks/useAlert";
 
 const StateSection = (props) => {
 
@@ -12,6 +13,8 @@ const StateSection = (props) => {
     const [stats, setStats] = useState(null)
     const [zones, setZones] = useState(null)
     const [deltaActive, setDeltaActive] = useState("")
+
+    const { addAlert } = useAlert()
 
     useEffect(()=>{
         props.setLoading(true)
@@ -27,7 +30,7 @@ const StateSection = (props) => {
             })
             .catch(error => {
                 if(error.response){
-                    alert(error.response.data.message)
+                    addAlert(error.response.data.message,'error')
                 }
             })
             .finally(()=>{
@@ -41,7 +44,7 @@ const StateSection = (props) => {
             })
             .catch(error => {
                 if(error.response){
-                    alert(error.response.data.message)
+                    addAlert(error.response.data.message,'error')
                 }
             })
             .finally(()=>{

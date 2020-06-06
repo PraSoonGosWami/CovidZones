@@ -19,31 +19,9 @@
 
 .ClistZone {
     font-size: 1.1em;
+    margin: 16px 0;
     word-spacing: 1px;
-    padding: 8px 12px;
-    border-radius: 6px;
-    animation: fade 0.4s ease-in-out;
-    animation-delay: 0.2s;
-    animation-fill-mode: backwards;
-}
-
-.ClistZoneSafe {
-    color: #046504;
-    background-color: #90ee90;
-}
-
-.ClistZoneDanger {
-    color: #797909;
-    background-color: #f1f16b;
-}
-
-.Clist > h4 {
-    font-size: 1.1em;
-    word-spacing: 1px;
-    color: #9e0707;
-    background-color: #e77b7b;
-    padding: 8px 12px;
-    border-radius: 6px;
+    padding: 8px;
     animation: fade 0.4s ease-in-out;
     animation-delay: 0.2s;
     animation-fill-mode: backwards;

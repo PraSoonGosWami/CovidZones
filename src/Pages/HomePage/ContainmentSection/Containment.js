@@ -12,6 +12,7 @@ import AxiosInstance from '../../../Services/AxiosInstance'
 import SearchResCard from "../../../UI/SearchResCard/SearchResCard";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import ContainmnetList from "./ContainmentList/ContainmnetList";
+import useAlert from "../../../Hooks/useAlert";
 
 const Containment = () => {
     const [darkMode, setDarkMode] = useState(false)
@@ -44,6 +45,8 @@ const Containment = () => {
     const [loading, setLoading] = useState(false)
     const dark = localStorage.getItem("dark")
 
+    const { addAlert } = useAlert()
+
     useEffect(()=>{
         dark === "Y" ? setDarkMode(true) : setDarkMode(false)
     },[dark])
@@ -67,18 +70,20 @@ const Containment = () => {
 
     //get search result from backend
     const getQueryRes =() =>{
-        if(query.length === 0)
+        if(query.length === 0){
+            addAlert("Please enter the search string",'error')
             return
+        }
         const data = {query}
-        setQueryRes([{address:"Searching...",geo:{lat:201}}])
+        setQueryRes([{address:"Searching...",geo:{lat:404}}])
         AxiosInstance.post('/search/location', data)
             .then(res => {
                 setQueryRes(res.data)
             })
             .catch(error => {
                 if(error.response){
-                    alert(error.response.data.message)
-                    setQueryRes([{address:error.response.data.message,geo:{lat:404}}])
+                    addAlert(error.response.data.message,'error')
+                    setQueryRes(null)
                 }
             })
     }
@@ -92,20 +97,22 @@ const Containment = () => {
                     geocode.push(position.coords.latitude)
                     geocode.push(position.coords.longitude)
                     getContainmentInfo(geocode)
-
                 }
-            },(err)=>alert(err.message))
+            },(err)=>addAlert(err.message,'error'))
         } else {
-            alert("Not Available");
+            addAlert("Cannot get your current location! Please try searching your area manually","error");
         }
 
     }
 
     //gets geocode for selected address returned from search and call getContainmentInfo()
     const onAddressSelectedListener = (geocode,address) => {
-        getContainmentInfo([geocode.lat,geocode.lng])
-        setQueryRes(null)
-        setQuery(address)
+        if(geocode.lat !== 404){
+            getContainmentInfo([geocode.lat,geocode.lng])
+            setQueryRes(null)
+            setQuery(address)
+        }
+
     }
 
     //gets containment zone info from backend
@@ -120,7 +127,7 @@ const Containment = () => {
             })
             .catch(error => {
                 if(error.response.data){
-                    alert(error.response.data.message)
+                    addAlert(error.response.data.message,'error')
                 }
             })
             .finally(()=>setLoading(false))
@@ -142,8 +149,9 @@ const Containment = () => {
                     type={"search"}
                     onChange={(event => onTextChanged(event))}
                     className={classes.input}
-                    placeholder="Search Area, Street, Locality"
-                    inputProps={{ 'aria-label': 'Search Area, Street, Locality' }}
+                    placeholder="Search Area, Street, Pin code"
+                    inputProps={{ 'aria-label': 'Search Area, Street, Pin code' }}
+                    inputProps={{ 'aria-label': 'Search Area, Street, Pin code' }}
                 />
                 <IconButton type="submit" className={classes.iconButton} aria-label="search">
                     <SearchIcon />

@@ -7,10 +7,10 @@ import Appbar from "./Components/Appbar/Appbar";
 import Paper from "@material-ui/core/Paper";
 import MainComponent from "./Components/MainComponent/MainComponent";
 import ReactGA from 'react-ga';
+import {SnackBarProvider} from "./Context/SnackBarContext";
 
 
-
-function App() {
+const App = () => {
 
     //google analytics
     function initializeReactGA() {
@@ -27,6 +27,7 @@ function App() {
     const [dropDownValue, setDropDownValue] = useState("TT")
     const darkTheme = createMuiTheme(DarkTheme)
     const lightTheme = createMuiTheme(LightTheme)
+
 
     useEffect(()=>{
         const dark = localStorage.getItem("dark")
@@ -46,14 +47,16 @@ function App() {
     }
     return (
         <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-            <Paper style={{minHeight:"100vh"}}>
-                <Appbar
-                    checked={darkMode}
-                    handleChange={()=> handleDarkMode()}
-                    dropDownValue={dropDownValue}
-                    onDropDownChangeHandler={onDropDownChangeHandler}/>
-                <MainComponent stateCode={dropDownValue}/>
-            </Paper>
+            <SnackBarProvider>
+                <Paper style={{minHeight:"100vh"}}>
+                    <Appbar
+                        checked={darkMode}
+                        handleChange={()=> handleDarkMode()}
+                        dropDownValue={dropDownValue}
+                        onDropDownChangeHandler={onDropDownChangeHandler}/>
+                    <MainComponent stateCode={dropDownValue}/>
+                </Paper>
+            </SnackBarProvider>
         </ThemeProvider>
 
     );
