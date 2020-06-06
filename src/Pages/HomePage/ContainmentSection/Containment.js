@@ -83,7 +83,7 @@ const Containment = () => {
             .catch(error => {
                 if(error.response){
                     addAlert(error.response.data.message,'error')
-
+                    return
                 }
                 addAlert(error.toString(),'error')
                 setQueryRes(null)
@@ -131,6 +131,7 @@ const Containment = () => {
             .catch(error => {
                 if(error.response){
                     addAlert(error.response.data.message,'error')
+                    return
                 }
                 addAlert(error.toString(),'error')
 

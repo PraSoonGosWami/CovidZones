@@ -47,6 +47,7 @@ const StateSection = (props) => {
             .catch(error => {
                 if(error.response){
                     addAlert(error.response.data.message,'error')
+                    return
                 }
                 addAlert(error.toString(),'error')
 
