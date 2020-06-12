@@ -10,7 +10,7 @@ export function SnackBarProvider({ children }) {
 
     const addAlert = useCallback((message,type) => {
         setShowAlert(true)
-        setAlert(prevState => prevState.concat({message,type}))
+        setAlert([{message,type}])
     },[])
 
     const value = {addAlert}

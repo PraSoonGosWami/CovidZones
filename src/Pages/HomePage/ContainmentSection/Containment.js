@@ -47,6 +47,7 @@ const Containment = () => {
 
     const { addAlert } = useAlert()
 
+
     useEffect(()=>{
         dark === "Y" ? setDarkMode(true) : setDarkMode(false)
     },[dark])
@@ -175,9 +176,9 @@ const Containment = () => {
                 </SearchResCard>
             }
 
+
             {loading && <LinearProgress  color={"secondary"}/>}
             {!loading && containmentRes && <ContainmnetList data={containmentRes} onClearButtonClickHandler={onClearButtonClickHandler}/>}
-
         </div>
     )
 }

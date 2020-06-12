@@ -1,3 +1,9 @@
 .MainComponent{
     padding: 16px 12px;
 }
+.MainComponent > button{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+

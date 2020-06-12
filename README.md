@@ -9,4 +9,5 @@ Github link for the API - https://github.com/PraSoonGosWami/CovidZonesAPI
 
 Visit the website - https://covidzones.prasoon.me/
 
-##### Latest version - 0.2.2
+##### Latest version - 0.3.0
+Introducing CovidZone Maps

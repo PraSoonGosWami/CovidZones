@@ -14,7 +14,7 @@ const ContainmnetList = (props) => {
         <div className={Style.Clist}>
             <header>
                 {data.lastUpdated &&
-                <Typography color={"textSecondary"}>Last update {formatDateAndTime(data.lastUpdated)}</Typography>}
+                <Typography color={"textSecondary"}>Last fetched {formatDateAndTime(data.lastUpdated)}</Typography>}
                 <Button onClick={() => props.onClearButtonClickHandler()} color={"secondary"} variant={"text"}
                         size={"small"}>Clear</Button>
             </header>
