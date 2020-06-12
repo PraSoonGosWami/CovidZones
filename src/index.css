@@ -14,3 +14,8 @@ code {
     monospace;
 }
 
+div#attr{
+  display: none;
+  opacity: 0;
+}
+

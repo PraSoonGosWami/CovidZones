@@ -1,16 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 export default class Map extends React.Component {
     mapNode = null;
     map = null;
 
     componentDidMount() {
-        this.initializeMap();
+        let geocode = []
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                if(position.coords){
+                    geocode.push(position.coords.latitude)
+                    geocode.push(position.coords.longitude)
+                }
+            },(err)=>console.log(err.message))
+        }
+        this.initializeMap(geocode);
     }
 
 
-    initializeMap = () => {
+    initializeMap = (geocode) => {
         const {
             center,
             zoomControl,
@@ -39,9 +47,10 @@ export default class Map extends React.Component {
                 /**
                  * Init Map
                  */
+
                 // eslint-disable-next-line no-undef
-                this.map = new MapmyIndia.Map(this.mapNode, {
-                    center,
+                window.map = new MapmyIndia.Map(this.mapNode, {
+                    center: geocode.length===2?geocode:center,
                     zoomControl,
                     location,
                     zoom,
@@ -51,24 +60,17 @@ export default class Map extends React.Component {
                 // eslint-disable-next-line no-undef
                 new MapmyIndia.covidLayer(
                     {
-                        map: this.map,
+                        map: window.map,
                         position: "topleft",
                         showControl: true,
                         defaultLayer: 'containment_zone_gradient',
-                        expand: false,
+                        expand: true,
                         multiple: false,
                         info: true,
                         skiplayerIds: [
-                            'corona_district_cases',
-                            'state_corona_stats',
-                            'corona_treatment_centre',
-                            'corona_testing_centre',
-                            'corona_sample_collection_centre',
-                            'corona_isolation_ward',
-                            'districts_containment_zone',
                             'government_ration_distribution',
                             'hunger_and_night_shelter',
-                            'hunger_relief_centre'
+                            'hunger_relief_centre',
                         ]
                     });
 
@@ -100,7 +102,7 @@ export default class Map extends React.Component {
                 ref={e => (this.mapNode = e)}
                 id="map"
                 className="map"
-                style={{width, height}}
+                style={{width, height, color:"black"}}
             ></div>
         );
     }
