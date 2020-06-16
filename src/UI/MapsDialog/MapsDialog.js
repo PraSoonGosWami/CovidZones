@@ -68,4 +68,4 @@ const MapsDialog = (props) => {
     );
 }
 
-export default MapsDialog
+export default React.memo(MapsDialog)
