@@ -8,11 +8,9 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import DoneIcon from '@material-ui/icons/Done';
-import {number} from "prop-types";
 
 const Nearbyzones = (props) => {
     const location = props.location
-    localStorage.setItem("loc",JSON.stringify(location))
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(null)
     const [radius, setRadius] = useState(5000)
@@ -47,6 +45,8 @@ const Nearbyzones = (props) => {
                 setData(res.data)
                 localStorage.setItem("nearby",JSON.stringify(res.data))
                 localStorage.setItem("radius",JSON.stringify(radius))
+                localStorage.setItem("loc",JSON.stringify(location))
+
             })
             .catch(error => {
                 if (error.response) {
@@ -67,8 +67,11 @@ const Nearbyzones = (props) => {
     return(
         <div className={Style.NearbyZones}>
             <Typography variant={"h6"}>Containment zones near by</Typography>
-            {loading && <LinearProgress color={"secondary"}/>}
-            <header>
+
+            <form onSubmit={(event)=>{
+                event.preventDefault()
+                updateRadius()
+            }}>
                 <TextField
                     label="within radius"
                     id="outlined-start-adornment"
@@ -90,7 +93,8 @@ const Nearbyzones = (props) => {
                     variant="outlined"
                 />
 
-            </header>
+            </form>
+            {loading && <LinearProgress color={"secondary"}/>}
             {data && data.length>0 && <ol>
                 {data.map((item, index) => {
                     return item !== "NA" && <li key={index}><p>{item}</p></li>
