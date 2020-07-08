@@ -9,6 +9,13 @@
 .NearbyZones > h6{
     word-spacing: 1px;
     letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+.NearbyZones > header {
+    margin: 16px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 @keyframes fade {

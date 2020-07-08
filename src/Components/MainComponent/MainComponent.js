@@ -1,11 +1,8 @@
-import React, {Suspense, useState} from 'react'
+import React, {Suspense} from 'react'
 import {Route, Switch} from "react-router";
 import Style from './MainComponent.module.css'
 import HomePage from "../../Pages/HomePage/HomePage";
 import ProgressBar from "../../UI/ProgressBar/ProgressBar";
-import Fab from "@material-ui/core/Fab";
-import MapIcon from "@material-ui/icons/Map";
-import MapsDialog from "../../UI/MapsDialog/MapsDialog";
 import MapComponent from "../MapComponent/MapComponent";
 
 

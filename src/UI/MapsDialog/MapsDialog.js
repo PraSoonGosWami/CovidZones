@@ -33,7 +33,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const MapsDialog = (props) => {
 
-
     const classes = useStyles();
     return (
         <Dialog fullScreen open={props.open} onClose={props.handleClose} TransitionComponent={Transition}>
@@ -54,7 +53,7 @@ const MapsDialog = (props) => {
                 <Map
                     height={"100%"}
                     center={[28.61, 77.23]}
-                    zoom={8}
+                    zoom={9}
                     zoomControl={true}
                     hybrid={false}
                     search={true}

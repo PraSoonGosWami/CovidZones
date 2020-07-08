@@ -41,6 +41,7 @@ export default class Map extends React.Component {
         } = this.props;
         const timer = setInterval(() => {
             let tried = 0;
+
             // eslint-disable-next-line no-undef
             if (MapmyIndia && MapmyIndia.Map) {
                 clearInterval(timer);
@@ -87,7 +88,8 @@ export default class Map extends React.Component {
                 onMouseover && this.map.addEventListener("mouseover", onMouseover);
                 onMove && this.map.addEventListener("move", onMove);
                 onMouseup && this.map.addEventListener("mouseup", onMouseup);
-            } else {
+            }
+            else {
                 tried++;
                 tried === 1500 && clearInterval(timer);
             }
@@ -103,7 +105,9 @@ export default class Map extends React.Component {
                 id="map"
                 className="map"
                 style={{width, height, color:"black"}}
-            ></div>
+            >
+
+            </div>
         );
     }
 }
