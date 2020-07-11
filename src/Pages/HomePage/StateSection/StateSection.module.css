@@ -3,6 +3,8 @@
     animation: fade 0.8s ease-in-out;
     animation-delay: 2s;
     animation-fill-mode: backwards;
+    min-height: 220px;
+
 }
 @keyframes fade {
     from {

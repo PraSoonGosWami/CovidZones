@@ -9,7 +9,18 @@ Github link for the API - https://github.com/PraSoonGosWami/CovidZonesAPI
 
 Visit the website - https://covidzones.prasoon.me/
 
-#### Latest version - 0.3.4
+#### Latest version - 1.0.4
+
+#### Major changes
+Version - 1.0.4 <br>
+* UI fixes
+* Added current district stats
+* Extended covid map button
+* Minor bug fixes
+
+Version - 1.0.0 <br>
+* Filter nearby zones within 5000 m radius
+* Minor bug fixes
 
 Version - 0.3.4 <br>
 * Minor bug fixes

@@ -18,12 +18,19 @@ const MapComponent = (props) => {
     const style = {
         position: 'fixed',
         bottom: '20px',
-        right: '20px'
+        right: '16px'
     }
     return (
         <div>
-            <Fab style={style} onClick={handleClickOpen} size="large" color="secondary" aria-label="open map">
-                <MapIcon/>
+            <Fab
+                variant={"extended"}
+                style={style}
+                onClick={handleClickOpen}
+                size="medium"
+                color="secondary" aria-label="open map"
+            >
+                <MapIcon style={{marginRight: "8px"}}/>
+                Covid map
             </Fab>
             <MapsDialog open={open} handleClose={handleClose}/>
         </div>

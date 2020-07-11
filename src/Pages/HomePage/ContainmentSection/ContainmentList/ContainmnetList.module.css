@@ -16,7 +16,35 @@
     word-spacing: 1px;
     letter-spacing: 1px;
 }
+.CListStats{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    margin: 22px 0;
+    font-size: 0.9em;
 
+}
+.CListStats > div{
+    flex: 1;
+    border-radius: 4px;
+    background-color: grey;
+}
+.CListStats > div:first-of-type{
+    background-color: #F9C9C9;
+    margin-right: 16px;
+    color: #ef2525;
+}
+
+.CListStats > div:last-of-type{
+    background-color: #9EC2F8;
+    color: #1558F3;
+}
+
+.CListStats > div > p:last-of-type{
+    margin-top: -10px;
+    font-weight: bold;
+}
 .ClistZone {
     font-size: 1.1em;
     margin: 16px 0;
@@ -42,4 +70,5 @@
     .Clist > p{
         font-size: 0.92em;
     }
+
 }

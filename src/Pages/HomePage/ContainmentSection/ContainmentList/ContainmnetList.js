@@ -19,7 +19,17 @@ const ContainmnetList = (props) => {
             </header>
             <p>Address: <strong>{data.address}</strong></p>
             <p>District: <strong>{data.containment[0].district}</strong></p>
-            {data.containment[0].districtZoneType && <p>District zone type: <strong>{data.containment[0].districtZoneType}</strong></p>}
+            <section className={Style.CListStats}>
+                <div>
+                    <p>District Confirmed</p>
+                    <p>{data.containment[0].districtTotalConfirmed}</p>
+                </div>
+                <div>
+                    <p>District Active</p>
+                    <p>{data.containment[0].districtCurrentActive}</p>
+                </div>
+            </section>
+
             {
                 data.containment[0].inContainmentZone ?
                     <Alert className={Style.ClistZone} severity={'warning'} variant="filled"

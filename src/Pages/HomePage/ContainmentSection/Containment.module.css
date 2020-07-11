@@ -1,12 +1,12 @@
 .Containment{
     padding: 4px;
-    margin-right: 10px;
     box-sizing: border-box;
     width: 500px;
     animation: fade 0.8s ease-in-out;
     animation-delay: 1s;
     animation-fill-mode: backwards;
     order: -1;
+    margin-right: 40px;
 }
 
 .Containment > h5{
@@ -28,11 +28,8 @@
 
 @media (max-width: 900px) {
     .Containment{
-        margin-top: 8px;
         order: -1;
-        margin-bottom: 36px;
-        margin-left: 0;
-        margin-right: 0;
+        margin: 8px 0 36px;
         width: auto;
     }
 }

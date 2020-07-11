@@ -68,12 +68,18 @@ const StateSection = (props) => {
                     <Typography variant={"h6"} color={"textSecondary"}>Last update {getDateAndTime(stats["0"].lastupdatedtime)} IST</Typography>
 
                     <header>
-                        <StatsCards bgColor={"#F9C9C9"} color={"#EF2525"} title={"Confirmed"} number={stats["0"].confirmed} delta={"+"+stats["0"].deltaconfirmed}/>
+                        <StatsCards bgColor={"#F9C9C9"} color={"#ef2525"} title={"Confirmed"} number={stats["0"].confirmed} delta={"+"+stats["0"].deltaconfirmed}/>
                         <StatsCards bgColor={"#9EC2F8"} color={"#1558F3"} title={"Active"} number={stats["0"].active} delta={deltaActive} />
                         <StatsCards bgColor={"#A9D5A5"} color={"#0C4B05"} title={"Recovered"} number={stats["0"].recovered} delta={"+"+stats["0"].deltarecovered}/>
                         <StatsCards bgColor={"#A4A2A2"} color={"#090909"} title={"Death"} number={stats["0"].deaths} delta={"+"+stats["0"].deltadeaths} />
                     </header>
                 </div>
+            }
+            {
+                stateCode === "TT" &&
+                    <div>
+                        graphs
+                    </div>
             }
             {
                stats && zones &&
